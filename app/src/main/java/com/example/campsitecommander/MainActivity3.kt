@@ -19,6 +19,20 @@ class MainActivity3 : AppCompatActivity() {
         //Typecasting for the detailed screen
         val tvDisplay= findViewById<TextView>(R.id.tvDisplay)
         val btnBack = findViewById<Button>(R.id.btnBack)
+        val btnList = findViewById<Button>(R.id.btnList)
+
+           val itemName = intent.getStringArrayExtra("EXTRA_ITEMS")
+            val categories = intent.getStringArrayExtra("EXTRA_CATEGORIES")
+        val quantities = intent.getStringArrayExtra("EXTRA_QUANTITIES")
+        val comment = intent.getStringArrayExtra("EXTRA_COMMENTS")
+
+        btnList.setOnClickListener {
+            val builder = StringBuilder()
+            var matchCount = 0
+
+            if (itemName != null && categories != null && quantities != null && comment != null) {
+        }
+            tvDisplay.text = builder.toString()
 
 
 
