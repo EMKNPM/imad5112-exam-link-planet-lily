@@ -3,4 +3,13 @@
     <string name="campsite_commander">Campsite Commander</string>
     <string name="st10519082_neliswa_shabalala">ST10519082 Neliswa Shabalala</string>
     <string name="start">Start</string>
+    <string name="gear_list">Gear list</string>
+    <string name="itemname">ItemName</string>
+    <string name="quantity">Quantity</string>
+    <string name="comment">Comment</string>
+    <string name="add_gear">Add gear</string>
+    <string name="next">Next</string>
+    <string name="back_to_main_screen">Back to main screen</string>
+    <string name="full_list_of_gear">Full list of gear</string>
+    <string name="back_to_base">Back to base</string>
 </resources>
