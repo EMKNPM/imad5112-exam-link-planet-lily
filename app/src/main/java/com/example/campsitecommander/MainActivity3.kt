@@ -45,7 +45,7 @@ class MainActivity3 : AppCompatActivity() {
                     builder.append("No items found in your packing list.")
                 }
             } else {
-                builder.append("Error: Data did not arrive safely from Screen One.")
+                builder.append(" Error")
             }
 
             // This updates the view ONLY when the button is pressed
