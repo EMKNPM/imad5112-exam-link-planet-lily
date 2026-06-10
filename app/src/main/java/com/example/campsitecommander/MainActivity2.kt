@@ -2,6 +2,7 @@ package com.example.campsitecommander
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -42,7 +43,7 @@ class MainActivity2 : AppCompatActivity(){
             }
             val item = edtItemName.text.toString()
             val cat = edtCategory.text.toString()
-            val quan = edtQuantity.text.toString()
+            val quan: String = edtQuantity.text.toString()
             val com = edtComment.text.toString()
 
             if (item.isEmpty() || cat.isEmpty() || quan.isEmpty() || com.isEmpty()) {

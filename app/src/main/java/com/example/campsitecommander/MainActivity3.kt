@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.lang.StringBuilder
 import java.util.Locale
 
 class MainActivity3 : AppCompatActivity() {
@@ -31,7 +32,23 @@ class MainActivity3 : AppCompatActivity() {
             var matchCount = 0
 
             if (itemName != null && categories != null && quantities != null && comment != null) {
-        }
+                builder.append("=== ALL PACKING ITEMS ===\n\n")
+
+                for (i in itemName.indices) {
+                    builder.append("• ${itemName[i]} [${categories[i]}]\n")
+                    builder.append("  Qty: ${quantities[i]} | Note: ${comment[i]}\n")
+                    builder.append("----------------------------------------\n")
+                    matchCount++
+                }
+
+                if (matchCount == 0) {
+                    builder.append("No items found in your packing list.")
+                }
+            } else {
+                builder.append("Error: Data did not arrive safely from Screen One.")
+            }
+
+            // This updates the view ONLY when the button is pressed
             tvDisplay.text = builder.toString()
 
 
@@ -42,4 +59,4 @@ class MainActivity3 : AppCompatActivity() {
             insets
         }
     }
-}
+}}
