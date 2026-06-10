@@ -46,7 +46,8 @@ class MainActivity2 : AppCompatActivity(){
             val com = edtComment.text.toString()
 
             if (item.isEmpty() || cat.isEmpty() || quan.isEmpty() || com.isEmpty()) {
-                Toast.makeText(this, "Error: All fields must be filled out.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error: All fields must be filled out.", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
             itemName[currentSize] = item
@@ -61,20 +62,29 @@ class MainActivity2 : AppCompatActivity(){
             edtQuantity.text.clear()
             edtComment.text.clear()
 
-            if (currentSize == 0){
-                Toast.makeText(this,"The list is empty.",Toast.LENGTH_SHORT).show()
+            if (currentSize == 0) {
+                Toast.makeText(this, "The list is empty.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
 
-                }
+            }
             val finalItems = itemName.copyOfRange(0, currentSize)
             val finalCategories = categories.copyOfRange(0, currentSize)
             val finalQuantities = quantities.copyOfRange(0, currentSize)
             val finalComments = comment.copyOfRange(0, currentSize)
 
-            val intent = Intent(this, MainActivity3::class.java).apply{
-               putExtra("EXTRA_ITEMS",finalItems)
-                putExtra()
+            val intent = Intent(this, MainActivity3::class.java).apply {
+                putExtra("EXTRA_ITEMS", finalItems)
+                putExtra("EXTRA_CATEGORIES", finalCategories)
+                putExtra("EXTRA_QUANTITIES", finalQuantities)
+                putExtra("EXTRA_COMMENTS", finalComments)
+
             }
+            startActivity(intent)
+        }
+        btnMain.setOnClickListener {
+            finishAffinity()
+        }
+
 
 
 
@@ -94,4 +104,4 @@ class MainActivity2 : AppCompatActivity(){
             insets
         }
     }
-}}
+}
