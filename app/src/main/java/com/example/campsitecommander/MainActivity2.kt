@@ -1,5 +1,6 @@
 package com.example.campsitecommander
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,21 +12,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity2 : AppCompatActivity(){
+    private val maxItems = 25
+    private val itemName = Array(maxItems) { "" }
+    private val categories = Array(maxItems) { "" }
+    private val quantities = IntArray(maxItems) { 0 }
+    private val comment = Array(maxItems) { "" }
 
-
-    //declaring our variables and arrays
-     // these are the parallel arrays that will match the existing variables
-
-       private val maxItems = 20
-    private  val  itemName = Array(maxItems){ " "}
-    private  val categories  = Array(maxItems){ " "}
-    private val comments= Array(maxItems){ " "}
-    private val quantity = IntArray(maxItems) { 0 }
-
-      private var currentSize = 0
-
-
-
+    private var currentSize = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,50 +35,53 @@ class MainActivity2 : AppCompatActivity(){
         val btnMain = findViewById<Button>(R.id.btnMain)
         val btnNext = findViewById<Button>(R.id.btnNext )
 
-
-        //When the button add gear is pressed an item is added to the list
         btnAdd.setOnClickListener {
-          if ( currentSize >= maxItems) {
-              Toast.makeText(this ,"Cannot add more items", Toast.LENGTH_SHORT).show()
-              return@setOnClickListener
-          }
-            //Gets entered by the user
-            val item = edtItemName.text.toString()
-            val cat = edtCategory.text.toString()
-            val com = edtComment.text.toString()
-            val quan = edtQuantity.text.toString()
-
-            if (item.isEmpty() || cat.isEmpty() || com.isEmpty() || quan.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_LONG).show()
+            if (currentSize >= maxItems) {
+                Toast.makeText(this, "List is full!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val item = edtItemName.text.toString()
+            val cat = edtCategory.text.toString()
+            val quan = edtQuantity.text.toString()
+            val com = edtComment.text.toString()
 
+            if (item.isEmpty() || cat.isEmpty() || quan.isEmpty() || com.isEmpty()) {
+                Toast.makeText(this, "Error: All fields must be filled out.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             itemName[currentSize] = item
-            categories[currentSize]= cat
-            comments[currentSize] = com
-            quantity[currentSize] = quan
+            categories[currentSize] = cat
+            quantities[currentSize] = quan
+            comment[currentSize] = com
 
             currentSize++
 
-            // Clearing the inputs so that the user can enter the next set of data
             edtItemName.text.clear()
+            edtCategory.text.clear()
             edtQuantity.text.clear()
             edtComment.text.clear()
-            edtCategory.text.clear()
 
-            btnNext.setOnClickListener {
-                if (currentSize == 0){
-                    Toast.makeText(this,"Please enter an item to the list.", Toast.LENGTH_LONG).show()
-                }
-                val Quantity = quan.toIntOrNull()
-                if (Quantity == null || Quantity < 1){
+            if (currentSize == 0){
+                Toast.makeText(this,"The list is empty.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
 
                 }
-                btnMain.setOnClickListener {
-                    finishAffinity()
-                }
+            val finalItems = itemName.copyOfRange(0, currentSize)
+            val finalCategories = categories.copyOfRange(0, currentSize)
+            val finalQuantities = quantities.copyOfRange(0, currentSize)
+            val finalComments = comment.copyOfRange(0, currentSize)
 
+            val intent = Intent(this, MainActivity3::class.java).apply{
+               putExtra("EXTRA_ITEMS",finalItems)
+                putExtra()
             }
+
+
+
+
+
+
+
 
 
 
